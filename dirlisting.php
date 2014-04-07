@@ -33,7 +33,7 @@ class dirlisting {
 	}
 	public function clioutput($Folder=null,$Child=false,$Tabs=1) {
 		if ( $this->Settings['return'] ) $ReturnArr = array();
-		if ( $Folder == null ) {
+		if ( $Folder === null ) {
 			$S = "";
 			for ( $i=0;$i<$Tabs;$i++ ) $S.="\t";
 			if ( !$this->Settings['return'] ) echo "|*|=>{$this->cwd}:\n";
@@ -83,7 +83,7 @@ class dirlisting {
 	}
 	public function htmloutput($Folder=null,$Child=false) {
 		if ( $this->Settings['return'] ) $ReturnArr = array();
-		if ( $Folder == null ) {
+		if ( $Folder === null ) {
 			if ( !$this->Settings['return'] ) {
 				echo "Directory: {$this->cwd}<br /><br />";
 				echo "<ul>";
@@ -163,7 +163,7 @@ class dirlisting {
 		if ( $this->Settings['return'] && isset($ReturnArr) ) return($ReturnArr);
 	}
 	public function arrayoutput($Folder=null) {
-		if ( $Folder==null ) return($this->Files);
+		if ( $Folder === null ) return($this->Files);
 		elseif ( is_array($this->Files[$Folder]) ) return($this->Files[$Folder]);
 		else return(NULL);
 	}
@@ -171,6 +171,7 @@ class dirlisting {
 		if ( !is_dir($Folder) ) return(false);
 		if ( $Folder[strlen($Folder)-1] != $this->Settings['dirs'] ) $Folder.= $this->Settings['dirs'] ;
 		if ( !$Child && $this->cwd != $Folder ) $this->cwd = $Folder;
+		if ( !is_array($AvoidEx) ) $AvoidEx = array($AvoidEx);
 		$Array = @scandir($Folder);
 		$FileArray = array();
 		$DirArray = array();
